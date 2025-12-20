@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { cn } from "@/utils/helper.utils";
+import { DATA_ITEM_MENU } from "@/data/menu-item.data";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets : ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets : ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "VizGit",
+  title      : "VizGit",
   description: "Vizualiza tus contribuciones de GitHub de una manera única y atractiva.",
 };
 
@@ -21,9 +25,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
+        className={cn("antialiased", geistSans.variable, geistMono.variable)}
       >
-        {children}
+        <div className="absolute h-full w-full bg-slate-950"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div></div>
+
+        <Header items={DATA_ITEM_MENU} ease="power3.out" />
+        
+        <main className="container mx-auto pt-28 p-5 sm:p-10">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
