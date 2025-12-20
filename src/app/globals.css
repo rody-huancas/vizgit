@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+:root {
+  --font-roboto: var(--font-roboto);
+}
+
+@theme inline {
+  --font-roboto: var(--font-roboto);
+}
