@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { cn } from "@/utils/helper.utils";
 import { DATA_ITEM_MENU } from "@/data/menu-item.data";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
   subsets : ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets : ["latin"],
+  weight  : ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-roboto",
+  display : "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es">
       <body
-        className={cn("antialiased", geistSans.variable, geistMono.variable)}
+        className={cn("antialiased font-roboto", roboto.variable)}
       >
         <div className="fixed inset-0 h-full w-full bg-slate-950 z-0">
           <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div>
