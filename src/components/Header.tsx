@@ -146,7 +146,7 @@ const Header = (props: HeaderProps) => {
           isExpanded && "open"
         )}
       >
-        <div className="card-nav-top absolute inset-x-0 top-0 h-15 flex items-center justify-between p-2 pl-[1.1rem] z-2">
+        <div className="card-nav-top absolute inset-x-0 top-0 h-15 flex items-center justify-between p-2 sm:pl-[1.1rem] z-2">
           <HamburgerMenu isOpen={isHamburgerOpen} onClick={toggleMenu} />
 
           <Link href="/" className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-0">
@@ -159,10 +159,10 @@ const Header = (props: HeaderProps) => {
               href="https://github.com/rody-huancas/vizgit"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-5 py-2"
+              className="flex items-center justify-center sm:gap-2 p-2 sm:px-5 sm:py-2"
             >
               <FaGithub />
-              GitHub
+              <span className="hidden sm:block">GitHub</span>
             </a>
           </ButtonGradient>
         </div>
