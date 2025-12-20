@@ -27,15 +27,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body
         className={cn("antialiased", geistSans.variable, geistMono.variable)}
       >
-        <div className="absolute h-full w-full bg-slate-950"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div></div>
+        <div className="fixed inset-0 h-full w-full bg-slate-950 z-0">
+          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div>
+        </div>
 
-        <Header items={DATA_ITEM_MENU} ease="power3.out" />
-        
-        <main className="container mx-auto pt-28 p-5 sm:p-10">
-          {children}
-        </main>
+        <div className="relative z-10 grid min-h-dvh grid-rows-[1fr_auto]">
+          <Header items={DATA_ITEM_MENU} ease="power3.out" />
+          
+          <main className="container mx-auto pt-28 p-5 px-5 sm:px-0 text-white">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </div>
       </body>
     </html>
   );
