@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="container mx-auto px-5 sm:px-10">
+    <footer className="container mx-auto px-5 sm:px-0 text-white flex items-center justify-between py-6 border-t border-t-slate-800 mt-10">
       <p>
         &copy; {new Date().getFullYear()}{" "}
         <a
@@ -10,6 +10,18 @@ const Footer = () => {
           className="font-semibold"
         >
           VizGit.
+        </a>
+      </p>
+
+      <p>
+        Desarrollado por{" "}
+        <a
+          href="https://github.com/rody-huancas"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold"
+        >
+          Rody Huancas
         </a>
       </p>
     </footer>
