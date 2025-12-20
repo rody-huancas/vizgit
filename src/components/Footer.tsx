@@ -4,12 +4,12 @@ const Footer = () => {
       <p>
         &copy; {new Date().getFullYear()}{" "}
         <a
-          href="https://github.com/rody-huancas/vizgit"
+          href="https://novtiq.com"
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold"
         >
-          VizGit.
+          Novtiq.
         </a>
       </p>
 
