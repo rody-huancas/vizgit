@@ -25,6 +25,8 @@ const HeroInput = () => {
           "relative rounded-2xl border transition-all duration-300 overflow-hidden",
           isFocused ? "border-emerald-500/40 shadow-[0_0_30px_rgba(16,185,129,0.08)]" : "border-white/10 hover:border-white/15"
         )}
+        role="search"
+        aria-label="Buscar usuario de GitHub"
       >
         <div className="absolute inset-0 bg-white/2 backdrop-blur-xl" />
 
@@ -39,9 +41,14 @@ const HeroInput = () => {
                 "w-5 h-5 mr-3 transition-colors duration-300",
                 isFocused ? "text-emerald-400" : "text-white/30"
               )}
+              aria-hidden="true"
             />
 
+            <label htmlFor="github-username" className="sr-only">
+              Nombre de usuario de GitHub
+            </label>
             <input
+              id="github-username"
               ref={inputRef}
               type="text"
               value={username}
@@ -50,6 +57,11 @@ const HeroInput = () => {
               onBlur={() => setIsFocused(false)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               placeholder="rody-huancas"
+              aria-label="Ingresa el nombre de usuario de GitHub"
+              aria-describedby="search-hint"
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
               className="flex-1 bg-transparent py-4 sm:py-5 text-base sm:text-lg text-white placeholder:text-white/30 outline-none"
             />
           </div>
@@ -57,18 +69,20 @@ const HeroInput = () => {
           <button
             onClick={handleSearch}
             disabled={!username.trim()}
+            type="button"
+            aria-label={username.trim() ? `Buscar usuario ${username}` : "Ingresa un nombre de usuario para buscar"}
             className={cn(
               "w-full sm:w-auto px-8 py-3 m-1.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap",
               username.trim() ? "bg-emerald-600 hover:bg-emerald-700 text-white active:scale-[0.98]" : "bg-white/5 text-white/20 cursor-not-allowed"
             )}
           >
             <span>Buscar</span>
-            <FiArrowRight className="w-4 h-4" />
+            <FiArrowRight className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      <p className="text-center text-xs sm:text-sm text-white/25 mt-4">
+      <p id="search-hint" className="text-center text-xs sm:text-sm text-white/25 mt-4">
         Presiona{" "}
         <kbd className="px-2 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-[11px] text-white/40">
           Enter ↵
