@@ -133,11 +133,12 @@ const Header = (props: HeaderProps) => {
   };
 
   return (
-    <div
+    <header
       className={cn(
         "card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-200 z-50 top-[1.2em] md:top-[2em]",
         className
       )}
+      role="banner"
     >
       <nav
         ref={navRef}
@@ -145,41 +146,64 @@ const Header = (props: HeaderProps) => {
           "card-nav block h-15 p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height] bg-slate-950",
           isExpanded && "open"
         )}
+        aria-label="Navegación principal"
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-15 flex items-center justify-between p-2 sm:pl-[1.1rem] z-2">
-          <HamburgerMenu isOpen={isHamburgerOpen} onClick={toggleMenu} />
+          <HamburgerMenu 
+            isOpen={isHamburgerOpen} 
+            onClick={toggleMenu}
+            aria-label={isHamburgerOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-expanded={isHamburgerOpen}
+            aria-controls="main-navigation"
+          />
 
-          <Link href="/" className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-0">
-            <img src="/logo-vizgit-dark.webp" alt="Logo VizGit" className="logo h-10" />
+          <Link 
+            href="/" 
+            className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-0"
+            aria-label="VizGit - Ir a la página de inicio"
+            title="VizGit - Visualizador de estadísticas de GitHub"
+          >
+            <img 
+              src="/logo-vizgit-dark.webp" 
+              alt="Logo de VizGit - Visualizador de estadísticas de GitHub" 
+              className="logo h-10"
+              loading="eager"
+            />
           </Link>
 
-
-          <ButtonGradient>
+          <ButtonGradient ariaLabel="Ver repositorio en GitHub" title="Abrir repositorio en GitHub">
             <a
               href="https://github.com/rody-huancas/vizgit"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center sm:gap-2 p-2 sm:px-5 sm:py-2"
+              aria-label="Ver el código fuente en GitHub (se abre en nueva pestaña)"
             >
-              <FaGithub />
+              <FaGithub aria-hidden="true" />
               <span className="hidden sm:block">GitHub</span>
             </a>
           </ButtonGradient>
         </div>
 
         <div
+          id="main-navigation"
           className={cn(
             "card-nav-content absolute left-0 right-0 top-15 bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-1 md:flex-row md:items-end md:gap-3",
             isExpanded ? "visible pointer-events-auto" : "invisible pointer-events-none"
           )}
           aria-hidden={!isExpanded}
+          role="menu"
         >
           {(items || []).slice(0, 3).map((item, idx) => (
-            <NavCard key={`${item.label}-${idx}`} item={item} cardRef={setCardRef(idx)} />
+            <NavCard 
+              key={`${item.label}-${idx}`} 
+              item={item} 
+              cardRef={setCardRef(idx)}
+            />
           ))}
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 
