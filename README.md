@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/logo-vizgit.webp" alt="VizGit Logo" width="120" height="120" />
+  <img src="/public/logo-vizgit.webp" alt="VizGit Logo" width="120" height="120" />
   
   # 🌱 VizGit
   
