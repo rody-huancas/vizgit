@@ -50,26 +50,34 @@ const ContributionHeatmap = (props: Props) => {
   const monthLabels = getMonthLabels();
 
   return (
-    <div className={cn(theme.bg, "rounded-2xl border border-white/10 p-4 sm:p-8")}>
+    <article 
+      className={cn(theme.bg, "rounded-2xl border border-white/10 p-4 sm:p-8")}
+      itemScope
+      itemType="https://schema.org/Person"
+    >
       <div className='w-full flex flex-col items-center justify-center'>
-        <div className="mb-6 text-center w-full">
+        <header className="mb-6 text-center w-full">
           <h1 className={cn("text-2xl sm:text-3xl font-bold mb-2", theme.text)}>
-            Contribuciones de @{username}
+            Contribuciones de <span itemProp="name">@{username}</span>
           </h1>
           <p className={cn("text-sm sm:text-base opacity-70", theme.text)}>
-            {totalContributions} contribuciones en el último año
+            <strong itemProp="contributionCount">{totalContributions}</strong> contribuciones en el último año
           </p>
-        </div>
+        </header>
         
-        <div className="w-full overflow-x-auto overflow-y-hidden pb-4 scroll-contribution">
+        <figure 
+          className="w-full overflow-x-auto overflow-y-hidden pb-4 scroll-contribution"
+          aria-label={`Mapa de calor de contribuciones de GitHub de ${username}`}
+        >
           <div className="inline-flex justify-center min-w-full">
             <div>
-              <div className="relative h-6 mb-1" style={{ marginLeft: '32px' }}>
+              <div className="relative h-6 mb-1" style={{ marginLeft: '32px' }} role="navigation" aria-label="Meses del año">
                 {monthLabels.map((month, idx) => (
                   <span
                     key={idx}
                     className={cn("absolute text-xs font-medium opacity-70", theme.text)}
                     style={{ left: `${month.x}px` }}
+                    aria-label={`Mes de ${month.name}`}
                   >
                     {month.name}
                   </span>
@@ -80,14 +88,16 @@ const ContributionHeatmap = (props: Props) => {
                 <div
                   className="flex flex-col justify-around text-[10px] sm:text-xs pr-2 select-none shrink-0"
                   style={{ color: theme.text }}
+                  role="list"
+                  aria-label="Días de la semana"
                 >
-                  <span style={{ height: `${squareSize}px`, lineHeight: `${squareSize}px` }}>
+                  <span style={{ height: `${squareSize}px`, lineHeight: `${squareSize}px` }} role="listitem">
                     Lun
                   </span>
-                  <span style={{ height: `${squareSize}px`, lineHeight: `${squareSize}px` }}>
+                  <span style={{ height: `${squareSize}px`, lineHeight: `${squareSize}px` }} role="listitem">
                     Mié
                   </span>
-                  <span style={{ height: `${squareSize}px`, lineHeight: `${squareSize}px` }}>
+                  <span style={{ height: `${squareSize}px`, lineHeight: `${squareSize}px` }} role="listitem">
                     Vie
                   </span>
                 </div>
@@ -99,6 +109,8 @@ const ContributionHeatmap = (props: Props) => {
                     gridTemplateColumns: `repeat(${contributions.length}, ${squareSize}px)`,
                     gridAutoFlow: 'column',
                   }}
+                  role="grid"
+                  aria-label="Calendario de contribuciones"
                 >
                   {contributions.map((week, weekIndex) =>
                     week.contributionDays.map((day, dayIndex) => {
@@ -113,6 +125,8 @@ const ContributionHeatmap = (props: Props) => {
                             "hover:ring-2 hover:ring-gray-400 cursor-pointer transition-all hover:scale-110"
                           )}
                           title={`${day.contributionCount} contribuciones - ${formattedDate}`}
+                          aria-label={`${day.contributionCount} contribuciones el ${formattedDate}`}
+                          role="gridcell"
                           style={{
                             width          : `${squareSize}px`,
                             height         : `${squareSize}px`,
@@ -127,13 +141,14 @@ const ContributionHeatmap = (props: Props) => {
                 </div>
               </div>
           
-              <div className={cn("flex items-center justify-center sm:justify-end gap-2 mt-4 text-xs sm:text-sm opacity-70", theme.text)}>
+              <figcaption className={cn("flex items-center justify-center sm:justify-end gap-2 mt-4 text-xs sm:text-sm opacity-70", theme.text)}>
                 <span>Menos</span>
-                <div className="flex" style={{ gap: `${squareGap}px` }}>
+                <div className="flex" style={{ gap: `${squareGap}px` }} role="legend" aria-label="Leyenda de niveles de contribución">
                   {Object.values(theme.colors).map((color, i) => (
                     <div
                       key={i}
                       className={color}
+                      aria-label={`Nivel ${i}`}
                       style={{
                         width       : `${squareSize}px`,
                         height      : `${squareSize}px`,
@@ -143,16 +158,16 @@ const ContributionHeatmap = (props: Props) => {
                   ))}
                 </div>
                 <span>Más</span>
-              </div>
+              </figcaption>
             </div>
           </div>
-        </div>
+        </figure>
         
-        <div className={cn("sm:hidden mt-4 text-xs text-center opacity-50", theme.text)}>
+        <aside className={cn("sm:hidden mt-4 text-xs text-center opacity-50", theme.text)} role="note">
           ← Desliza para ver todo el año →
-        </div>
+        </aside>
       </div>
-    </div>
+    </article>
   );
 };
 

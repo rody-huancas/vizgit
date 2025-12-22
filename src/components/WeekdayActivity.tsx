@@ -19,22 +19,39 @@ const WeekdayActivity = ({ weekdayStats, theme }: WeekdayActivityProps) => {
   ];
 
   return (
-    <div className={cn(theme.bg, "rounded-2xl border border-white/10 p-6")}>
-      <h2 className={cn("text-xl font-bold mb-2", theme.text)}>
+    <section 
+      className={cn(theme.bg, "rounded-2xl border border-white/10 p-6")}
+      aria-labelledby="weekday-activity-title"
+    >
+      <h2 
+        id="weekday-activity-title"
+        className={cn("text-xl font-bold mb-2", theme.text)}
+      >
         📅 Días más activos
       </h2>
       <p className={cn("text-sm opacity-60 mb-6", theme.text)}>
         Tu actividad distribuida por día de la semana
       </p>
 
-      <div className="space-y-3">
+      <div className="space-y-3" role="list" aria-label="Actividad por día de la semana">
         {reordered.map((day, idx) => (
-          <div key={idx} className="flex items-center gap-3">
+          <div 
+            key={idx} 
+            className="flex items-center gap-3"
+            role="listitem"
+          >
             <span className={cn("text-sm font-medium w-10", theme.text)}>
               {day.day}
             </span>
 
-            <div className="flex-1 bg-white/5 rounded-full h-8 overflow-hidden relative">
+            <div 
+              className="flex-1 bg-white/5 rounded-full h-8 overflow-hidden relative"
+              role="progressbar"
+              aria-valuenow={day.percentage}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`${day.day}: ${day.contributions} contribuciones`}
+            >
               <div
                 className="h-full rounded-full transition-all duration-500 flex items-center justify-end px-3"
                 style={{
@@ -43,7 +60,7 @@ const WeekdayActivity = ({ weekdayStats, theme }: WeekdayActivityProps) => {
                 }}
               >
                 {day.percentage > 20 && (
-                  <span className="text-xs font-bold text-white">
+                  <span className={cn("text-xs font-bold", theme.text)} aria-hidden="true">
                     {day.contributions.toLocaleString()}
                   </span>
                 )}
@@ -53,6 +70,7 @@ const WeekdayActivity = ({ weekdayStats, theme }: WeekdayActivityProps) => {
             {day.percentage <= 20 && (
               <span
                 className={cn("text-xs opacity-60 w-16 text-right", theme.text)}
+                aria-hidden="true"
               >
                 {day.contributions.toLocaleString()}
               </span>
@@ -60,7 +78,7 @@ const WeekdayActivity = ({ weekdayStats, theme }: WeekdayActivityProps) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

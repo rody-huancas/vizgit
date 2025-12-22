@@ -1,5 +1,24 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import HeroInput from "@/components/HeroInput";
+
+export const metadata: Metadata = {
+  title      : "VizGit - Visualiza tus Contribuciones de GitHub",
+  description: "Analiza y visualiza tus estadísticas de GitHub de forma interactiva. Descubre tus lenguajes más usados, actividad semanal y métricas de contribución.",
+  keywords   : ["GitHub", "estadísticas", "contribuciones", "desarrollo", "programación", "visualización"],
+  authors    : [{ name: "Rody Huancas" }],
+  openGraph  : {
+    title      : "VizGit - Visualiza tus Contribuciones de GitHub",
+    description: "Analiza y visualiza tus estadísticas de GitHub de forma interactiva",
+    type       : "website",
+    locale     : "es_ES",
+  },
+  twitter: {
+    card       : "summary_large_image",
+    title      : "VizGit - Visualiza tus Contribuciones de GitHub",
+    description: "Analiza y visualiza tus estadísticas de GitHub de forma interactiva",
+  },
+};
 
 const HomePage = () => {
   return (

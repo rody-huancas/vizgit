@@ -9,10 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@bprogress/next": "^3.2.12",
+    "add": "^2.0.6",
+    "bash": "^0.0.1",
     "clsx": "^2.1.1",
     "gsap": "^3.14.2",
     "motion": "^12.23.26",
     "next": "16.1.0",
+    "pnpm": "^10.26.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
