@@ -7,3 +7,61 @@
 @theme inline {
   --font-roboto: var(--font-roboto);
 }
+
+/*========================================================
+                  ESTILOS PARA EL HERO
+========================================================*/
+
+@keyframes bounce-letter {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+  }
+}
+
+.animate-bounce-letter {
+  animation: bounce-letter 3s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+kbd {
+  font-size: 0.875em;
+}
+
+
+/*========================================================
+              ESTILOS LA PÁGINA DE USUARIO
+========================================================*/
+
+.scroll-contribution::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-contribution::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 0 4px;
+}
+
+.scroll-contribution::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.scroll-contribution::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.scroll-contribution::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Para Firefox */
+.scroll-contribution {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}

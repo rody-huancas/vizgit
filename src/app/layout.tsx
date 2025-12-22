@@ -14,7 +14,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title      : "VizGit",
+  title      : "vizgit",
   description: "Vizualiza tus contribuciones de GitHub de una manera única y atractiva.",
 };
 
@@ -25,13 +25,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className={cn("antialiased font-roboto", roboto.variable)}
       >
         <div className="fixed inset-0 h-full w-full bg-slate-950 z-0">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-size-[20px_20px]"></div>
+          
+          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#06155a,transparent)]"></div>
         </div>
 
         <div className="relative z-10 grid min-h-dvh grid-rows-[1fr_auto]">
           <Header items={DATA_ITEM_MENU} ease="power3.out" />
           
-          <main className="container mx-auto pt-28 p-5 px-5 sm:px-0 text-white">
+          <main className="container mx-auto pt-28 py-5 sm:px-0 text-white">
             {children}
           </main>
 
