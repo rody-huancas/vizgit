@@ -71,11 +71,11 @@ const ContributionHeatmap = (props: Props) => {
         >
           <div className="inline-flex justify-center min-w-full">
             <div>
-              <div className="relative h-6 mb-1" style={{ marginLeft: '32px' }} role="navigation" aria-label="Meses del año">
-                {monthLabels.map((month, idx) => (
+              <div className="relative h-6 mb-1" style={{ marginLeft: '40px' }} role="navigation" aria-label="Meses del año">
+                {monthLabels. map((month, idx) => (
                   <span
                     key={idx}
-                    className={cn("absolute text-xs font-medium opacity-70", theme.text)}
+                    className={cn("absolute text-xs font-medium opacity-70", theme. text)}
                     style={{ left: `${month.x}px` }}
                     aria-label={`Mes de ${month.name}`}
                   >
@@ -86,8 +86,8 @@ const ContributionHeatmap = (props: Props) => {
           
               <div className="flex" style={{ gap: `${squareGap}px` }}>
                 <div
-                  className="flex flex-col justify-around text-[10px] sm:text-xs pr-2 select-none shrink-0"
-                  style={{ color: theme.text }}
+                  className="flex flex-col justify-around text-xs sm:text-sm pr-3 select-none shrink-0"
+                  style={{ color:  theme.text }}
                   role="list"
                   aria-label="Días de la semana"
                 >
@@ -121,8 +121,8 @@ const ContributionHeatmap = (props: Props) => {
                         <div
                           key={`${weekIndex}-${dayIndex}`}
                           className={cn(
-                            getColor(day.contributionCount),
-                            "hover:ring-2 hover:ring-gray-400 cursor-pointer transition-all hover:scale-110"
+                            getColor(day. contributionCount),
+                            "hover:ring-2 hover: ring-gray-400 cursor-pointer transition-all hover:scale-110"
                           )}
                           title={`${day.contributionCount} contribuciones - ${formattedDate}`}
                           aria-label={`${day.contributionCount} contribuciones el ${formattedDate}`}
