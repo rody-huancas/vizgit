@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
 
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 import { cn } from "@/utils/helper.utils";
 
 type Direction = "TOP" | "LEFT" | "BOTTOM" | "RIGHT";
@@ -13,10 +13,12 @@ interface ButtonGradientProps extends React.HTMLAttributes<HTMLElement> {
   duration          ?: number;
   clockwise         ?: boolean;
   children          ?: React.ReactNode;
+  ariaLabel         ?: string;
+  title             ?: string;
 }
 
 const ButtonGradient = (args: ButtonGradientProps) => {
-  const { children, containerClassName, className, as: Tag = "button", duration = 1, clockwise = true, ...props } = args;
+  const { children, containerClassName, className, as: Tag = "button", duration = 1, clockwise = true, ariaLabel, title, ...props } = args;
 
   const [hovered, setHovered] = useState<boolean>(false);
   const [direction, setDirection] = useState<Direction>("TOP");
@@ -51,9 +53,12 @@ const ButtonGradient = (args: ButtonGradientProps) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        "relative flex rounded-full border  content-center bg-slate-950/20 hover:bg-slate-950/10 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px box-decoration-clone w-fit cursor-pointer",
+        "relative flex rounded-full border content-center bg-slate-950/20 hover:bg-slate-950/10 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px box-decoration-clone w-fit cursor-pointer",
         containerClassName
       )}
+      aria-label={ariaLabel}
+      title={title}
+      role={Tag === "button" ? "button" : undefined}
       {...props}
     >
       <div
@@ -77,8 +82,9 @@ const ButtonGradient = (args: ButtonGradientProps) => {
         initial={{ background: movingMap[direction] }}
         animate={{ background: hovered ? [movingMap[direction], highlight] : movingMap[direction] }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
+        aria-hidden="true"
       />
-      <div className="bg-slate-950 absolute z-1 flex-none inset-0.5 rounded-[100px]" />
+      <div className="bg-slate-950 absolute z-1 flex-none inset-0.5 rounded-[100px]" aria-hidden="true" />
     </Tag>
   );
 };
