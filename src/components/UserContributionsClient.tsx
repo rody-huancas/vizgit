@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import UserStatsCard from '@/components/UserStatsCard';
-import LanguagesCard from '@/components/LanguagesCard';
-import WeekdayActivity from '@/components/WeekdayActivity';
-import ContributionError from './ContributionError';
-import ActivityLevelCard from '@/components/ActivityLevelCard';
-import ContributionHeatmap from '@/components/ContributionHeatmap';
-import ContributionsLoading from './ContributionsLoading';
-import ContributionCustomizer from '@/components/ContributionCustomizer';
-import { THEMES } from '@/types/contributions.types';
-import { useGitHubContributions } from '@/hooks/useGitHubContributions';
+import { useState } from "react";
+import UserStatsCard from "@/components/UserStatsCard";
+import LanguagesCard from "@/components/LanguagesCard";
+import WeekdayActivity from "@/components/WeekdayActivity";
+import ContributionError from "./ContributionError";
+import ActivityLevelCard from "@/components/ActivityLevelCard";
+import ContributionHeatmap from "@/components/ContributionHeatmap";
+import ContributionsLoading from "./ContributionsLoading";
+import ContributionCustomizer from "@/components/ContributionCustomizer";
+import { THEMES } from "@/types/contributions.types";
+import { useGitHubContributions } from "@/hooks/useGitHubContributions";
 
 interface UserContributionsClientProps {
   username: string;
@@ -25,9 +25,9 @@ const UserContributionsClient = ({ username }: UserContributionsClientProps) => 
   const [squareGap    , setSquareGap    ] = useState<number>(3);
   const [squareRadius , setSquareRadius ] = useState<number>(2);
 
-  if (loading) return <ContributionsLoading />
+  if (loading) return <ContributionsLoading />;
 
-  if (error) return <ContributionError error={error} />
+  if (error) return <ContributionError error={error} />;
 
   const currentTheme = THEMES[selectedTheme];
 
@@ -47,12 +47,15 @@ const UserContributionsClient = ({ username }: UserContributionsClientProps) => 
       />
 
       {activityLevel && (
-        <ActivityLevelCard activityLevel={activityLevel} totalContributions={totalContributions} theme={currentTheme} />
+        <ActivityLevelCard
+          activityLevel      = {activityLevel}
+          totalContributions = {totalContributions}
+          theme              = {currentTheme}
+          username           = {username}
+        />
       )}
 
-      {userStats && (
-        <UserStatsCard stats={userStats} theme={currentTheme} />
-      )}
+      { userStats && <UserStatsCard stats={userStats} theme={currentTheme} username={username} /> }
 
       <ContributionHeatmap
         contributions      = {contributions}
