@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { cn } from "@/utils/helper.utils";
 import { DATA_ITEM_MENU } from "@/data/menu-item.data";
-import "./globals.css";
+import "@/styles/globals.css";
 
 const roboto = Roboto({
   subsets : ["latin"],
