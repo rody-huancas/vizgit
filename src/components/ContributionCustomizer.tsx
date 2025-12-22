@@ -1,3 +1,4 @@
+import { cn } from '@/utils/helper.utils';
 import { THEMES } from '@/types/contributions.types';
 
 interface Props {
@@ -35,14 +36,15 @@ const ContributionCustomizer = (props: Props) => {
             <button
               key={index}
               onClick={() => setSelectedTheme(index)}
-              className={`p-4 rounded-lg border-2 transition-all ${
+              className={cn(
+                'p-4 rounded-lg border-2 transition-all',
                 selectedTheme === index ? 'border-emerald-600 shadow-lg shadow-emerald-500/20' : 'border-white/10 hover:border-white/20'
-              }`}
+              )}
             >
               <div className="text-sm font-medium mb-2 text-white">{theme.name}</div>
               <div className="flex gap-1 justify-center">
                 {Object.values(theme.colors).map((color, i) => (
-                  <div key={i} className={`w-4 h-4 rounded-sm ${color}`} />
+                  <div key={i} className={cn('w-4 h-4 rounded-sm', color)} />
                 ))}
               </div>
             </button>
