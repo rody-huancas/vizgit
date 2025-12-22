@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { cn } from "@/utils/helper.utils";
-import { DATA_ITEM_MENU } from "@/data/menu-item.data";
 import "@/styles/globals.css";
 
 const roboto = Roboto({
@@ -14,13 +11,51 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title      : "vizgit",
-  description: "Vizualiza tus contribuciones de GitHub de una manera única y atractiva.",
+  title: {
+    default : "vizgit - Visualiza tus contribuciones de GitHub",
+    template: "%s | vizgit"
+  },
+  description: "Visualiza tus contribuciones de GitHub de una manera única y atractiva. Analiza tu actividad, estadísticas y tendencias de commits.",
+  keywords   : ["GitHub", "contribuciones", "estadísticas", "visualización", "commits", "desarrollador"],
+  authors    : [{ name: "rody-huancas" }],
+  creator    : "rody-huancas",
+  openGraph  : {
+    type       : "website",
+    locale     : "es_ES",
+    url        : "https://vizgit.novtiq.com",
+    title      : "vizgit - Visualiza tus contribuciones de GitHub",
+    description: "Visualiza tus contribuciones de GitHub de una manera única y atractiva.",
+    siteName   : "vizgit",
+  },
+  twitter: {
+    card       : "summary_large_image",
+    title      : "vizgit - Visualiza tus contribuciones de GitHub",
+    description: "Visualiza tus contribuciones de GitHub de una manera única y atractiva.",
+  },
+  robots: {
+    index    : true,
+    follow   : true,
+    googleBot: {
+      index              : true,
+      follow             : true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet"      : -1,
+    },
+  },
+  viewport: {
+    width       : "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
+      <head>
+        <link rel="canonical" href="https://vizgit.novtiq.com" />
+      </head>
       <body
         className={cn("antialiased font-roboto", roboto.variable)}
       >
@@ -31,13 +66,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </div>
 
         <div className="relative z-10 grid min-h-dvh grid-rows-[1fr_auto]">
-          <Header items={DATA_ITEM_MENU} ease="power3.out" />
-          
-          <main className="container mx-auto pt-28 py-5 sm:px-0 text-white overflow-hidden">
-            {children}
-          </main>
-
-          <Footer />
+          {children}
         </div>
       </body>
     </html>
