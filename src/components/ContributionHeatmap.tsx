@@ -1,3 +1,4 @@
+import { cn } from '@/utils/helper.utils';
 import { formatDate } from '@/utils/date.utils';
 import { ContributionWeek, ColorTheme } from '@/types/contributions.types';
 
@@ -16,8 +17,8 @@ const ContributionHeatmap = (props: Props) => {
   const { contributions, totalContributions, theme, squareSize, squareGap, squareRadius, username } = props;
 
   const getColor = (count: number) => {
-    if (count === 0) return theme.colors. empty;
-    if (count <   3) return theme.colors. level1;
+    if (count === 0) return theme.colors.empty;
+    if (count <   3) return theme.colors.level1;
     if (count <   6) return theme.colors.level2;
     if (count <   9) return theme.colors.level3;
     return theme.colors.level4;
@@ -28,7 +29,8 @@ const ContributionHeatmap = (props: Props) => {
     let lastMonth = -1;
 
     contributions.forEach((week, weekIndex) => {
-      const firstDay = week. contributionDays[0];
+      const firstDay = week.contributionDays[0];
+      
       if (firstDay) {
         const date  = new Date(firstDay.date);
         const month = date.getMonth();
@@ -48,13 +50,13 @@ const ContributionHeatmap = (props: Props) => {
   const monthLabels = getMonthLabels();
 
   return (
-    <div className={`${theme.bg} rounded-2xl border border-white/10 p-4 sm:p-8`}>
+    <div className={cn(theme.bg, "rounded-2xl border border-white/10 p-4 sm:p-8")}>
       <div className='w-full flex flex-col items-center justify-center'>
         <div className="mb-6 text-center w-full">
-          <h1 className={`text-2xl sm:text-3xl font-bold mb-2 ${theme. text}`}>
+          <h1 className={cn("text-2xl sm:text-3xl font-bold mb-2", theme.text)}>
             Contribuciones de @{username}
           </h1>
-          <p className={`text-sm sm:text-base ${theme.text} opacity-70`}>
+          <p className={cn("text-sm sm:text-base opacity-70", theme.text)}>
             {totalContributions} contribuciones en el último año
           </p>
         </div>
@@ -66,7 +68,7 @@ const ContributionHeatmap = (props: Props) => {
                 {monthLabels.map((month, idx) => (
                   <span
                     key={idx}
-                    className={`absolute text-xs font-medium ${theme.text} opacity-70`}
+                    className={cn("absolute text-xs font-medium opacity-70", theme.text)}
                     style={{ left: `${month.x}px` }}
                   >
                     {month.name}
@@ -106,9 +108,10 @@ const ContributionHeatmap = (props: Props) => {
                       return (
                         <div
                           key={`${weekIndex}-${dayIndex}`}
-                          className={`${getColor(day.contributionCount)} 
-                            hover:ring-2 hover:ring-gray-400 cursor-pointer transition-all
-                            hover:scale-110`}
+                          className={cn(
+                            getColor(day.contributionCount),
+                            "hover:ring-2 hover:ring-gray-400 cursor-pointer transition-all hover:scale-110"
+                          )}
                           title={`${day.contributionCount} contribuciones - ${formattedDate}`}
                           style={{
                             width          : `${squareSize}px`,
@@ -124,7 +127,7 @@ const ContributionHeatmap = (props: Props) => {
                 </div>
               </div>
           
-              <div className={`flex items-center justify-center sm:justify-end gap-2 mt-4 text-xs sm:text-sm ${theme.text} opacity-70`}>
+              <div className={cn("flex items-center justify-center sm:justify-end gap-2 mt-4 text-xs sm:text-sm opacity-70", theme.text)}>
                 <span>Menos</span>
                 <div className="flex" style={{ gap: `${squareGap}px` }}>
                   {Object.values(theme.colors).map((color, i) => (
@@ -145,7 +148,7 @@ const ContributionHeatmap = (props: Props) => {
           </div>
         </div>
         
-        <div className={`sm:hidden mt-4 text-xs text-center ${theme.text} opacity-50`}>
+        <div className={cn("sm:hidden mt-4 text-xs text-center opacity-50", theme.text)}>
           ← Desliza para ver todo el año →
         </div>
       </div>

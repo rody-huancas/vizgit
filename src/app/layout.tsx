@@ -33,7 +33,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="relative z-10 grid min-h-dvh grid-rows-[1fr_auto]">
           <Header items={DATA_ITEM_MENU} ease="power3.out" />
           
-          <main className="container mx-auto pt-28 py-5 sm:px-0 text-white">
+          <main className="container mx-auto pt-28 py-5 sm:px-0 text-white overflow-hidden">
             {children}
           </main>
 
