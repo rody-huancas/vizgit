@@ -65,3 +65,17 @@ kbd {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
 }
+
+
+/*========================================================
+              ESTILOS EXPORTAR EN MOBILE
+========================================================*/
+
+.export-desktop {
+  min-width: 1000px !important;
+  max-width: 1000px !important;
+  width: 1000px !important;
+  margin: 0 auto !important;
+}
+.export-desktop .grid-cols-1 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.export-desktop .sm\:px-0 { padding-left: 0 !important; padding-right: 0 !important; }
