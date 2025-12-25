@@ -50,7 +50,7 @@ const UserContributionsClient = ({ username }: UserContributionsClientProps) => 
         />
       </div>
 
-      <div className="flex justify-end px-5">
+      <div className="flex justify-end px-5 overflow-hidden">
         <ExportFullProfile username={username} />
       </div>
 
