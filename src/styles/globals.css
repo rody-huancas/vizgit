@@ -72,9 +72,9 @@ kbd {
 ========================================================*/
 
 .export-desktop {
-  min-width: 1000px !important;
-  max-width: 1000px !important;
-  width: 1000px !important;
+  min-width: 1500px !important;
+  max-width: 1500px !important;
+  width: 1500px !important;
   margin: 0 auto !important;
 }
 .export-desktop .grid-cols-1 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
