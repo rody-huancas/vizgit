@@ -73,13 +73,14 @@ const Hero = () => {
 
       <div className="text-center mb-8 sm:mb-10 px-4">
         <p className="text-lg sm:text-xl md:text-2xl text-white/70 font-light mb-2">
-          Convierte tus commits en una{" "}
+          Transforma tus commits en una{" "}
           <strong className="text-emerald-400 font-medium">
-            obra de arte visual
+        experiencia visual única
           </strong>
+          .
         </p>
         <p className="text-sm sm:text-base text-white/50">
-          Descubre tu impacto real como developer y compártelo con el mundo
+          Visualiza y comparte el verdadero impacto de tu trabajo como developer.
         </p>
       </div>
 
