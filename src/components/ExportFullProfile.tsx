@@ -4,6 +4,7 @@ import { toPng } from "html-to-image";
 import { useState } from "react";
 import ShareButton from "./ShareButton";
 import { UserStats } from "@/types/github.types";
+import DownloadButton from "./DownloadButton";
 
 interface ExportFullProfileProps {
   username           : string;
@@ -100,7 +101,7 @@ const ExportFullProfile = ({ username, userStats, totalContributions }: ExportFu
   return (
     <section
       id="export-button-container"
-      className="h-12 flex items-center justify-end"
+      className="w-full h-12 flex items-center justify-end"
       aria-label="Exportar perfil como imagen"
     >
       {isExporting ? (
@@ -132,30 +133,8 @@ const ExportFullProfile = ({ username, userStats, totalContributions }: ExportFu
           <span className="text-sm font-medium">Generando imagen...</span>
         </div>
       ) : (
-        <div className="flex items-center justify-end gap-5">
-          <button
-            onClick={handleExport}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all shadow-lg text-white bg-linear-to-r from-emerald-600 to-emerald-700 animate-fade-in cursor-pointer"
-            aria-label={`Descargar imagen del perfil de GitHub de ${username}`}
-            title="Exportar perfil completo como imagen PNG"
-            type="button"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-              />
-            </svg>
-            <span>Descargar Imagen</span>
-          </button>
+        <div className="w-full flex items-center justify-center sm:justify-end gap-5">
+          <DownloadButton username={username} handleExport={handleExport} />
 
           <ShareButton 
             username={username} 
